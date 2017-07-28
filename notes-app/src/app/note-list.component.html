@@ -1,0 +1,43 @@
+<!--BEGIN: Notes list-->    
+        <div class="list-group side__list">
+        <div class="form-group" *ngIf="search">
+	        <div class="form-group">
+	        	<input type="text" [(ngModel)]="noteFilter.title" placeholder="Search by note title" class="form-control">
+	        </div>
+	        <div class="form-group">
+				    <input type="text" [(ngModel)]="noteFilter.content" placeholder="Search by note content" class="form-control">
+	        </div>
+          <div class="form-group">
+            <input type="text" [(ngModel)]="noteFilter.dueDateFormatted" placeholder="Search by date in format dd.mm.rrrr" class="form-control">
+          </div>
+	       	<div class="form-group">
+	       		<label for="note-priority">Search by priority:</label>
+            <select class="form-control" [(ngModel)]="noteFilter.priority" required>
+              <option></option>
+              <option *ngFor="let priority of notePriorities" name="note-priority" id="note-priority">{{ priority }}</option>
+            </select>
+	        </div>
+        </div>
+
+        <button [ngClass]="{ 'active': note == selectedNote }" *ngFor="let note of notes | filterBy: noteFilter" (click)="select(note)" class="list-group-item">
+
+          	<span class="pull-right">
+          		<a (click)="edit(note)" class="col-sm-6 col-md-6 col-lg-9"> <i class="glyphicon glyphicon-pencil text-muted"></i></a>
+
+            	<a (click)="remove(note)"> <i class="glyphicon glyphicon-remove text-muted"></i></a>
+            </span>
+
+            <div>
+              <p>{{ note.title }}</p>
+              <p *ngIf="today < note.dueDate && note.dueDate < twoWeeksForward" style="color: red" ><b>Due Tomorrow!!!</b></p>
+              <p><b>Due date: {{ note.dueDate }}</b></p>
+              <p class="badge">{{ note.createdOn }}</p>
+              <p class="label label-pill label-danger" *ngIf="note.priority == 'Do'">{{ note.priority }}</p>
+              <p class="badge" *ngIf="note.priority != 'Do'">{{ note.priority }}</p>
+              <b class="pull-right" *ngIf="note.content.length > 25">Long one</b>
+            </div>
+            
+          </button>
+
+        </div>
+<!--END: Notes list-->

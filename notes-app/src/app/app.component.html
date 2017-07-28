@@ -1,0 +1,48 @@
+<header>
+  <div class="container">
+    <div class="page-header">
+      <h1 style="display: inline-block">
+        <img src="assets/goyello-logo.png" style="width: 65px;"> Notes app</h1>
+    </div>
+  </div>
+</header>
+
+<main>
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-6 col-md-6 col-lg-6 side">
+        <div class="notes-list__button">
+          <h4 class="notes-list__button__elements">Your recent notes</h4>
+          <a (click)="showForm()" class="btn pull-right">
+            <span class="btn btn-success btn-lg notes-list__button__elements" *ngIf="!create">Create</span>
+
+            <span class="btn btn-warning btn-lg notes-list__button__elements" *ngIf="create">Cancel</span>
+          </a>
+          <a (click)="search = !search" class="btn pull-right">
+            <span class="btn btn-success btn-lg notes-list__button__elements pull-right" *ngIf="!search" >Search</span>
+            <span class="btn btn-warning btn-lg notes-list__button__elements" *ngIf="search" >Cancel</span>
+          </a>
+        </div>
+        <!--BEGIN: Notes list-->
+
+        <note-list [notes]="notes" [search]="search"  (selectNote)="selectNote($event)" (removeNote)="removeNote($event)" (editNote)="editNote($event)" ></note-list>
+
+        <!--END: Notes list-->
+      </div>
+
+      <div class="col-sm-6 col-md-6 col-lg-6">
+        <!--BEGIN: Note details-->
+        
+        <note-details *ngIf="!create" [selectedNote]="selectedNote"></note-details>
+
+        <!--END: Note details-->
+
+        <!--BEGIN: Note form-->
+
+        <note-form *ngIf="create" [note]="note" (notes)="createNote($event)"></note-form>
+
+        <!--END: Note form-->
+      </div>
+    </div>
+  </div>
+</main>

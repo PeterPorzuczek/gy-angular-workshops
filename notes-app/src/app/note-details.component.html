@@ -1,0 +1,25 @@
+<!--BEGIN: Note details-->
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h3>
+              {{ selectedNote.title }}
+              
+              <p class="label label-pill label-danger pull-right" *ngIf="selectedNote.priority == 'Do'">{{ selectedNote.priority }}</p>
+
+              <p class="badge pull-right" *ngIf="selectedNote.priority != 'Do'">{{ selectedNote.priority }}</p>
+              
+            </h3>
+            <h4>
+             {{ selectedNote.createdOn }}
+            </h4>
+          </div>
+          <div class="panel-body">
+            <p class="text-justify">
+             {{ selectedNote.content }}
+            </p>
+          </div>
+          <div class="panel-body">
+            <p><b>Due date: {{ selectedNote.dueDate }}</b></p>
+          </div>
+        </div>
+<!--END: Note details-->

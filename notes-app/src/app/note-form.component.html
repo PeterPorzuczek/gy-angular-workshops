@@ -1,0 +1,35 @@
+<!--BEGIN: Note form-->
+        <div class="panel panel-success">
+          <div class="panel-heading">New note</div>
+          <div class="panel-body">
+            <form #newNoteForm="ngForm" (ngSubmit)="addNewNote()">
+            
+              <div class="form-group">
+                <label for="note-title">Title:</label>
+                <input required [(ngModel)]="newNote.title" type="text" class="form-control" name="note-title" id="note-title">
+                <!-- <blockquote> {{ newNote.title }} </blockquote> -->
+              </div>
+
+              <div class="form-group">
+                <label for="note-content">Note:</label>
+                <textarea required [(ngModel)]="newNote.content" class="form-control new-note__content-input" name="note-content" id="note-content"></textarea>
+                  <!-- <blockquote> {{ newNote.content }} </blockquote> -->
+              </div>
+
+              <div class="form-group">
+                <label for="note-priority">Priority:</label>
+                <select class="form-control" [(ngModel)]="newNote.priority" name="note-priority" id="note-priority" (change)="parseValue($event.target.value)" required>
+                  <option *ngFor="let priority of notePriorities" [value]="priority" ngDefaultControl>{{ priority }}</option>
+                </select>
+                <!-- <blockquote> {{ newNote.priority }} </blockquote> -->
+              </div>
+
+              <div class="form-group">
+                <my-date-picker name="mydate" [selDate]="selDate" [options]="myDatePickerOptions" (dateChanged)="onDateChanged($event)" [(ngModel)]="newNote.dueDate" required></my-date-picker>
+              </div>
+
+              <button [disabled]="newNoteForm.invalid" type="submit" class="btn btn-success">Submit</button>
+            </form>
+          </div>
+        </div>
+<!--END: Note form-->
