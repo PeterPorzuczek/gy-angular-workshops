@@ -3,7 +3,7 @@ Notes-app build in Angular during workshops organized by Goyello.
 [Link to original repo](https://github.com/michalczukm/gy-angular-workshops)
 # Preview & [Live Preview](https://peterporzuczek.github.io/gy-angular-workshops/)
 <div>
-	<img src="http://i.imgur.com/RLi4lZ0.gif" alt="app-preview" width="640" height="360">
+	<img src="http://i.imgur.com/RLi4lZ0.gif" alt="app-preview" width="75%" height="75%">
 </div>
 <div>
   </br>
